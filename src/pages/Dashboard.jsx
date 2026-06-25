@@ -1,4 +1,4 @@
-import { Activity, Droplets, Leaf, Sun, Thermometer, Wind } from 'lucide-react';
+import { Activity, Droplets, Leaf, Power, Sun, Thermometer, Wind } from 'lucide-react';
 import AlertCard from '../components/AlertCard';
 import PlantStatusCard from '../components/PlantStatusCard';
 import ReminderCard from '../components/ReminderCard';
@@ -110,7 +110,7 @@ function Dashboard({ data, loading, error, onNavigate }) {
             Cảm biến gia tốc MPU6050
           </h2>
         </div>
-        <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3 3xl:gap-5">
+        <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-5 3xl:gap-5">
           <SensorCard
             title="Gia tốc X"
             value={data.device?.mpu6050?.accel_x ?? 0}
@@ -135,6 +135,26 @@ function Dashboard({ data, loading, error, onNavigate }) {
             unit="g"
             icon={Activity}
             accent="sky"
+            compact
+            trend={[]}
+          />
+          <SensorCard
+            title="Bơm nước"
+            value={data.device?.pump ? 'BẬT' : 'TẮT'}
+            status={data.device?.pump ? 'Đang tưới' : 'Đang tắt'}
+            unit=""
+            icon={Power}
+            accent={data.device?.pump ? 'blue' : 'orange'}
+            compact
+            trend={[]}
+          />
+          <SensorCard
+            title="Mực nước"
+            value={data.device?.waterLevel ?? 0}
+            status={data.device?.waterLevel > 20 ? 'Bình thường' : 'Sắp hết'}
+            unit="%"
+            icon={Droplets}
+            accent={data.device?.waterLevel > 20 ? 'blue' : 'rose'}
             compact
             trend={[]}
           />

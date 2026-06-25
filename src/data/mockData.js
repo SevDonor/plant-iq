@@ -195,6 +195,7 @@ export const device = {
   status: 'online',
   lastSeen: now - 2 * 60 * 1000,
   pump: false,
+  waterLevel: 75,
   firmware: '1.0.4',
   signal: 'Mạnh',
 };

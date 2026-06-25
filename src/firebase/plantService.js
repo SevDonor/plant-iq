@@ -40,6 +40,7 @@ const mapDeviceFromESP32 = (hwData) => {
     ...mockSnapshot.device,
     id: DEVICE_ID,
     pump: Boolean(hwData.pump_status),
+    waterLevel: hwData.water_level ?? mockSnapshot.device.waterLevel ?? 0,
     lastSeen: Date.now(), // Since it's realtime, we consider it seen now
     battery: hwData.battery_voltage ?? 0,
     mpu6050: hwData.mpu6050 || { accel_x: 0, accel_y: 0, accel_z: 0 },
